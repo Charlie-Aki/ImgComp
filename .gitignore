@@ -1,4 +1,5 @@
-dist
+dist/
 .tmp
 .DS_Store
 .python-version
+imgs/ImgComp_256x256.ico
