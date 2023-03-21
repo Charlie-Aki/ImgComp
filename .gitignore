@@ -1,6 +1,6 @@
 dist/
 build/
-.hitstory/
+.history/
 .vscode/
 __pycache__/
 imgs/*
