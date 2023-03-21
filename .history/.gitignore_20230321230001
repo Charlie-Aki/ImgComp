@@ -1,0 +1,11 @@
+dist/
+build/
+.hitstory/
+.vscode/
+__pycache__/
+imgs/*
+.tmp
+.DS_Store
+.python-version
+Setup.exe
+*.code-workspace

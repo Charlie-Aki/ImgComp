@@ -1,0 +1,7 @@
+dist/
+build/
+.tmp
+.DS_Store
+.python-version
+Setup.exe
+imgs/*
