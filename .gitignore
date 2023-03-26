@@ -11,3 +11,4 @@ Setup.exe
 privacy.py
 *dist/
 *build/
+pyinstaller/
