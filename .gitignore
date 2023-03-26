@@ -1,5 +1,3 @@
-dist/
-build/
 .history/
 .vscode/
 __pycache__/
@@ -11,3 +9,5 @@ Setup.exe
 *.code-workspace
 *.pptx
 privacy.py
+*dist/
+*build/

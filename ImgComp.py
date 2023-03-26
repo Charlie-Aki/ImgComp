@@ -39,9 +39,11 @@ import functools
 import json
 import webbrowser
 
+
 def main():
     app=Application()
     app.mainloop()
+
 
 class Application(tkdnd.TkinterDnD.Tk):
     def __init__(self):
@@ -720,7 +722,7 @@ class Model:
         """
         Popplerのパスを通す
         """
-        poppler_path = model.get_abs_path("./poppler-23.01.0/Library/bin")
+        poppler_path = self.get_abs_path("./poppler-23.01.0/Library/bin")
         os.environ["PATH"] += os.pathsep + poppler_path
 
     def detect_exts(self, fname1, fname2):

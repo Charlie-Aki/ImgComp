@@ -8,7 +8,7 @@ a = Analysis(
     ['ImgComp.py'],
     pathex=[],
     binaries=[],
-    datas=[('imgs/*', 'imgs/'), ('poppler-23.01.0/*', 'poppler-23.01.0')],
+    datas=[('imgs/*', 'imgs/'), ('poppler-23.01.0/Library/bin/*', 'poppler-23.01.0/Library/bin')],
     hiddenimports=[],
     hookspath=['hook/'],
     hooksconfig={},
