@@ -5,7 +5,7 @@ imgs/*
 .tmp
 .DS_Store
 .python-version
-Setup.exe
+*.exe
 *.code-workspace
 *.pptx
 privacy.py

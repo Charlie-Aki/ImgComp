@@ -4,25 +4,21 @@
 try:
     import privacy
     __appname__ = privacy.__appname__
-    __version__ = privacy.__version__
-    __date__    = privacy.__date__
-    __deprecated__ = privacy.__deprecated__
-    __status__ = privacy.__status__
     __author__ = privacy.__author__
     __copyright__ = privacy.__copyright__
     __credits__ = privacy.__credits__
-    __license__ = privacy.__license__
 
 except:
     __appname__ = "ImgComp"
-    __version__ = "8.0" #X.Y=Major Update (UI Change or Additional Function) . Minor Update (Bugfix etc.)
-    __date__    = "2023/03/21"
-    __deprecated__ = "Windows 10 64bit, Python 3.11.0, Poppler 23.01.0"
-    __status__ = "Production" #Production(正式リリース版) or Development(開発版)
     __author__ = ["Charlie Aki Evans", "and Friends"]
     __copyright__ = "Charlie Aki Evans and Friends"
     __credits__ = ["Charlie Aki Evans", "and Friends"]
-    __license__ = "GPLv3 (https://www.gnu.org/licenses/gpl-3.0.html)"
+
+__version__ = "8.0" #X.Y=Major Update (UI Change or Additional Function) . Minor Update (Bugfix etc.)
+__date__    = "2023/03/21"
+__deprecated__ = "Windows 10 64bit, Python 3.11.0, Poppler 23.01.0"
+__status__ = "Production" #Production(正式リリース版) or Development(開発版)
+__license__ = "GPLv3 (https://www.gnu.org/licenses/gpl-3.0.html)"
 
 import os
 import tkinter as tk
