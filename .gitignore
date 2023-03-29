@@ -12,3 +12,4 @@ privacy.py
 *dist/
 *build/
 pyinstaller/
+*.iss
