@@ -56,7 +56,7 @@ class Application(tkdnd.TkinterDnD.Tk):
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=0)
         self.grid_rowconfigure(1, weight=1)
-        self.setting_file_path = os.environ["LOCALAPPDATA"]+"/ImgComp/画像比較/settings.json".replace("/", os.sep) #Win版リリース用
+        self.setting_file_path = os.environ["LOCALAPPDATA"]+"/ImgComp/settings.json".replace("/", os.sep) #Win版リリース用
         # self.setting_file_path = "./settings.json".replace("/", os.sep) #テスト用
         self.settings = self.init_settings(self.setting_file_path)
         self.create_widgets()
