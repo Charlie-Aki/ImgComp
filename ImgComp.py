@@ -14,8 +14,8 @@ except:
     __copyright__ = "Charlie Aki Evans and Friends"
     __credits__ = ["Charlie Aki Evans", "and Friends"]
 
-__version__ = "8.0" #X.Y=Major Update (UI Change or Additional Function) . Minor Update (Bugfix etc.)
-__date__    = "2023/03/21"
+__version__ = "8.1" #X.Y=Major Update (UI Change or Additional Function) . Minor Update (Bugfix etc.)
+__date__    = "2023/06/07"
 __deprecated__ = "Windows 10 64bit, Python 3.11.0, Poppler 23.01.0"
 __status__ = "Production" #Production(正式リリース版) or Development(開発版)
 __license__ = "GPLv3 (https://www.gnu.org/licenses/gpl-3.0.html)"
@@ -56,7 +56,7 @@ class Application(tkdnd.TkinterDnD.Tk):
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=0)
         self.grid_rowconfigure(1, weight=1)
-        self.setting_file_path = os.environ["LOCALAPPDATA"]+"/ImgComp/図面比較/settings.json".replace("/", os.sep) #Win版リリース用
+        self.setting_file_path = os.environ["LOCALAPPDATA"]+"/ImgComp/画像比較/settings.json".replace("/", os.sep) #Win版リリース用
         # self.setting_file_path = "./settings.json".replace("/", os.sep) #テスト用
         self.settings = self.init_settings(self.setting_file_path)
         self.create_widgets()
