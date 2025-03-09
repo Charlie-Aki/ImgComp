@@ -4,6 +4,8 @@
 *dist/
 *build/
 *imgs_backup/
+*imgs/
+*Sample/
 *.tmp
 *.DS_Store
 *.python-version
