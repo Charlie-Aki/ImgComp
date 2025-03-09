@@ -43,6 +43,8 @@ pip install .
 3. Edit pdf2image.py and replace the lines as follows or do Monkey Patch to achieve changes below so that the brink of consoles when you run the exe will be eliminated.
 
 ```shell
-- proc = Popen(command, env=env, stdout=PIPE, stderr=PIPE)
-+ proc = Popen(command, env=env, stdout=PIPE, stderr=PIPE, startupinfo=startupinfo)
+# Replace
+proc = Popen(command, env=env, stdout=PIPE, stderr=PIPE)
+# with
+proc = Popen(command, env=env, stdout=PIPE, stderr=PIPE, startupinfo=startupinfo)
 ```
