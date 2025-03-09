@@ -8,7 +8,7 @@ pdf2image==1.16.3
 pefile==2023.2.7
 pikepdf==7.1.2
 Pillow==9.4.0
-pyinstaller @ file:///C:/Users/charl/OneDrive/Documents/python_project/ImgComp/pyinstaller
+pyinstaller @ git+https://github.com/pyinstaller/pyinstaller@develop
 pyinstaller-hooks-contrib==2023.1
 pywin32-ctypes==0.2.0
 tkinterdnd2==0.3.0

@@ -7,18 +7,25 @@ try:
     __author__ = privacy.__author__
     __copyright__ = privacy.__copyright__
     __credits__ = privacy.__credits__
+    flag_privacy = True
+
 
 except:
     __appname__ = "ImgComp"
-    __author__ = ["Charlie Aki Evans", "and Friends"]
+    __author__ = ["Charlie Aki Evans and Friends"]
     __copyright__ = "Charlie Aki Evans and Friends"
-    __credits__ = ["Charlie Aki Evans", "and Friends"]
+    __credits__ = ["Charlie Aki Evans and Friends"]
+    flag_privacy = False
 
-__version__ = "8.1" #X.Y=Major Update (UI Change or Additional Function) . Minor Update (Bugfix etc.)
-__date__    = "2023/06/07"
+
+__version__ = "8.3" #X.Y=Major Update (UI Change or Additional Function) . Minor Update (Bugfix etc.)
+__date__    = "2025/03/09"
 __deprecated__ = "Windows 10 64bit, Python 3.11.0, Poppler 23.01.0"
 __status__ = "Production" #Production(正式リリース版) or Development(開発版)
 __license__ = "GPLv3 (https://www.gnu.org/licenses/gpl-3.0.html)"
+__report_issues_url__ = "https://github.com/Charlie-Aki/ImgComp/issues"
+__website_url__ = "https://google.com" #仮
+
 
 import os
 import tkinter as tk
@@ -34,9 +41,11 @@ import threading
 import functools
 import json
 import webbrowser
+import ctypes
 
 
 def main():
+    ctypes.windll.shcore.SetProcessDpiAwareness(1) # Windows 8.1以降の高DPI対応
     app=Application()
     app.mainloop()
 
@@ -280,11 +289,13 @@ class MainFrame(ttk.Frame):
             json.dump(setting_data, _file)
 
     def run_program(self):
+        if flag_privacy == False:
+            webbrowser.open_new(__website_url__)
+            self.ctrl_frame.text_message_init()
         try:
             self.record_settings(self.master.setting_file_path)
             self.run_button.state(["disabled"])  # Disable run button.
             self.stop_button.state(["!disabled"])  # Enable stop button.
-            self.ctrl_frame.text_message_init()
             self.file_menu.entryconfig("実行", state="disabled")  # Disable run menu.
             self.file_menu.entryconfig("中断", state="normal")  # Enable stop menu.
 
@@ -371,7 +382,13 @@ class MainFrame(ttk.Frame):
                 self.ctrl_frame.text_message(scroll_txt)
 
                 #画像バイナリデータの読み込み
-                drw1, drw2, num_frames, dpi_value = model.read_binary_image(fname1[j], fname2[j], file_exts[0])
+                drw1, drw2, num_frames, num_frames2, dpi_value = model.read_binary_image(fname1[j], fname2[j], file_exts[0])
+
+                #ページ数不一致エラー
+                if num_frames != num_frames2:
+                    self.regular_error(
+                       "Page numbers do not match between old and new images.")
+                    return
 
                 #pdf2image上限エラー
                 if file_exts[0].endswith(".pdf") and num_frames > 100:
@@ -650,6 +667,7 @@ class AboutWindow(tk.Toplevel):
         self.master=master
         self.title("このアプリケーションについて")
         self.iconbitmap(self.master.icon_image)  # Works only on Windows OS
+        self.geometry('600x400')
         self.resizable(tk.FALSE, tk.FALSE)
         self.grid_columnconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=1)
@@ -672,8 +690,10 @@ class AboutWindow(tk.Toplevel):
         popver_label2 = ttk.Label(self, text=str(__deprecated__.split(", ")[2]), anchor='w')
         osver_label = ttk.Label(self, text="動作環境: ", anchor='e')
         osver_label2 = ttk.Label(self, text=str(__deprecated__.split(", ")[0]), anchor='w')
-        author_label = ttk.Label(self, text="作者:\n", anchor='e')
+        author_label = ttk.Label(self, text="作者: ", anchor='e')
         author_label2 = ttk.Label(self, text="\n".join(__author__), anchor='w')
+        if flag_privacy == False:
+            author_label2.bind("<Button-1>",lambda e:webbrowser.open_new(__report_issues_url__))
         license_label = ttk.Label(self, text="ライセンス: ", anchor='e')
         license_label2 = ttk.Label(self, text=__license__, anchor='w')
         license_label2.bind("<Button-1>",lambda e:webbrowser.open_new("https://www.gnu.org/licenses/gpl-3.0.html"))
@@ -740,14 +760,16 @@ class Model:
             itr1 = ImageSequence.Iterator(drw1)
             itr2 = ImageSequence.Iterator(drw2)
             num_frames = drw1.n_frames
+            num_frames2 = drw2.n_frames
             dpi_value = drw1.info['dpi']
-            return itr1, itr2, num_frames, dpi_value
+            return itr1, itr2, num_frames, num_frames2, dpi_value
         elif file_ext.endswith(".pdf"):
             drw1 = pdf2image.convert_from_path(fname1, dpi=300)
             drw2 = pdf2image.convert_from_path(fname2, dpi=300)
             num_frames = len(drw1)
+            num_frames2 = len(drw2)
             dpi_value = (300, 300)
-            return drw1, drw2, num_frames, dpi_value
+            return drw1, drw2, num_frames, num_frames2, dpi_value
 
     def create_masked_image(self, drw1, drw2):
         #グレースケールに変換、出力用のベース作成
