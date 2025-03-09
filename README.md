@@ -46,5 +46,17 @@ pip install .
 # Replace
 proc = Popen(command, env=env, stdout=PIPE, stderr=PIPE)
 # with
-proc = Popen(command, env=env, stdout=PIPE, stderr=PIPE, startupinfo=startupinfo)
+startupinfo = None
+if platform.system() == "Windows":
+   # this startupinfo structure prevents a console window from popping up on Windows
+   startupinfo = subprocess.STARTUPINFO()
+   startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+processes.append(
+   (
+       thread_output_file,
+       Popen(
+           args, env=env, stdout=PIPE, stderr=PIPE, startupinfo=startupinfo
+       ),
+   )
+)
 ```
