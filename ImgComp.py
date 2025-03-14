@@ -66,7 +66,8 @@ class Application(tkdnd.TkinterDnD.Tk):
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=0)
         self.grid_rowconfigure(1, weight=1)
-        self.setting_file_path = os.environ["LOCALAPPDATA"]+"/ImgComp/settings.json".replace("/", os.sep) #Win版リリース用
+        self.setting_dir_path = os.environ["LOCALAPPDATA"]+"/ImgComp".replace("/", os.sep) #Win版リリース用
+        self.setting_file_path = self.setting_dir_path+"/settings.json".replace("/", os.sep) #Win版リリース用
         # self.setting_file_path = "./settings.json".replace("/", os.sep) #テスト用
         self.settings = self.init_settings(self.setting_file_path)
         self.create_widgets()
@@ -146,6 +147,8 @@ class Menubar(tk.Menu):
 
     def show_about_window(self):
         about_window=AboutWindow(master=self.master)
+
+
 
 class MainFrame(ttk.Frame):
     def __init__(self, master, ctrl_frame):
@@ -290,6 +293,9 @@ class MainFrame(ttk.Frame):
             json.dump(setting_data, _file)
 
     def run_program(self):
+        if not os.path.exists(os.path.dirname(self.master.setting_file_path)):
+            self.master.init_settings(self.master.setting_file_path)
+
         if flag_privacy == False:
             webbrowser.open_new(__website_url__)
             self.ctrl_frame.text_message_init()
@@ -388,7 +394,7 @@ class MainFrame(ttk.Frame):
                 #ページ数不一致エラー
                 if num_frames != num_frames2:
                     self.regular_error(
-                       "Page numbers do not match between old and new images.")
+                       "比較対象のファイルのページ数が一致していません。")
                     return
 
                 #pdf2image上限エラー
@@ -507,8 +513,8 @@ class MainFrame(ttk.Frame):
         self.run_button.state(["!disabled"])  # Enable run button.
         self.stop_button.state(["disabled"])  # Disable stop button.
         # self.file_menu.entryconfig("実行", state="normal")  # Enable run menu.
-        # # Disable stop menu.
-        # self.file_menu.entryconfig("中断", state="disabled")
+        # self.file_menu.entryconfig("中断", state="disabled") # Disable stop menu.
+        self.ctrl_frame.text_message_init()
         scroll_txt = "ファイルと出力先を選択し、「実行」をクリックしてください。"
         self.ctrl_frame.text_message(scroll_txt)
 
