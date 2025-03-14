@@ -12,18 +12,19 @@ try:
 
 except:
     __appname__ = "ImgComp"
-    __author__ = ["Charlie Aki Evans and Friends"]
-    __copyright__ = "Charlie Aki Evans and Friends"
-    __credits__ = ["Charlie Aki Evans and Friends"]
+    __author__ = ["Charlie Aki Evans"]
+    __copyright__ = "Charlie Aki Evans"
+    __credits__ = ["Charlie Aki Evans"]
     flag_privacy = False
 
 
 __version__ = "8.3" #X.Y=Major Update (UI Change or Additional Function) . Minor Update (Bugfix etc.)
-__date__    = "2025/03/09"
-__deprecated__ = "Windows 10 64bit, Python 3.11.0, Poppler 23.01.0"
+__date__    = "2025/03/14"
+__deprecated__ = "Windows 11 64bit 24H2, Python 3.11.0, Poppler 23.01.0"
 __status__ = "Production" #Production(正式リリース版) or Development(開発版)
 __license__ = "GPLv3 (https://www.gnu.org/licenses/gpl-3.0.html)"
-__report_issues_url__ = "https://github.com/Charlie-Aki/ImgComp/issues"
+# __report_issues_url__ = "https://github.com/Charlie-Aki/ImgComp/issues"
+__report_issues_url__ = "https://google.com" #仮
 __website_url__ = "https://google.com" #仮
 
 
@@ -682,13 +683,13 @@ class AboutWindow(tk.Toplevel):
         separator = ttk.Separator(self, orient=tk.HORIZONTAL)
         date_label = ttk.Label(self, text="最終更新日: ", anchor='e')
         date_label2 = ttk.Label(self, text=__date__, anchor='w')
-        ver_label = ttk.Label(self, text="アプリケーションバージョン: ", anchor='e')
+        ver_label = ttk.Label(self, text="バージョン: ", anchor='e')
         ver_label2 = ttk.Label(self, text=str(__version__), anchor='w')
-        pyver_label = ttk.Label(self, text="Pythonバージョン: ", anchor='e')
-        pyver_label2 = ttk.Label(self, text=str(__deprecated__.split(", ")[1]), anchor='w')
-        popver_label = ttk.Label(self, text="Popplerバージョン: ", anchor='e')
-        popver_label2 = ttk.Label(self, text=str(__deprecated__.split(", ")[2]), anchor='w')
-        osver_label = ttk.Label(self, text="動作環境: ", anchor='e')
+        # pyver_label = ttk.Label(self, text="Pythonバージョン: ", anchor='e')
+        # pyver_label2 = ttk.Label(self, text=str(__deprecated__.split(", ")[1]), anchor='w')
+        # popver_label = ttk.Label(self, text="Popplerバージョン: ", anchor='e')
+        # popver_label2 = ttk.Label(self, text=str(__deprecated__.split(", ")[2]), anchor='w')
+        osver_label = ttk.Label(self, text="動作確認環境: ", anchor='e')
         osver_label2 = ttk.Label(self, text=str(__deprecated__.split(", ")[0]), anchor='w')
         author_label = ttk.Label(self, text="作者: ", anchor='e')
         author_label2 = ttk.Label(self, text="\n".join(__author__), anchor='w')
@@ -708,10 +709,10 @@ class AboutWindow(tk.Toplevel):
         date_label2.grid(row=2, column=1, padx=5, pady=2, sticky="NSEW")
         ver_label.grid(row=3, column=0, pady=2, sticky="NSEW")
         ver_label2.grid(row=3, column=1, padx=5, pady=2, sticky="NSEW")
-        pyver_label.grid(row=4, column=0, pady=2, sticky="NSEW")
-        pyver_label2.grid(row=4, column=1, padx=5, pady=2, sticky="NSEW")
-        popver_label.grid(row=5, column=0, pady=2, sticky="NSEW")
-        popver_label2.grid(row=5, column=1, padx=5, pady=2, sticky="NSEW")
+        # pyver_label.grid(row=4, column=0, pady=2, sticky="NSEW")
+        # pyver_label2.grid(row=4, column=1, padx=5, pady=2, sticky="NSEW")
+        # popver_label.grid(row=5, column=0, pady=2, sticky="NSEW")
+        # popver_label2.grid(row=5, column=1, padx=5, pady=2, sticky="NSEW")
         osver_label.grid(row=6, column=0, pady=2, sticky="NSEW")
         osver_label2.grid(row=6, column=1, padx=5, pady=2, sticky="NSEW")
         author_label.grid(row=7, column=0, pady=2, sticky="NSEW")
