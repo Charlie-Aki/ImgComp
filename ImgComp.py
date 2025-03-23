@@ -19,7 +19,7 @@ except:
 
 
 __version__ = "8.3" #X.Y=Major Update (UI Change or Additional Function) . Minor Update (Bugfix etc.)
-__date__    = "2025/03/14"
+__date__    = "2025/03/23"
 __deprecated__ = "Windows 11 64bit 24H2, Python 3.11.0, Poppler 23.01.0"
 __status__ = "Production" #Production(正式リリース版) or Development(開発版)
 __license__ = "GPLv3 (https://www.gnu.org/licenses/gpl-3.0.html)"
@@ -385,6 +385,7 @@ class MainFrame(ttk.Frame):
         ######################
         for j in range(len(fname1)):
             if self.thread_flag.is_set() == True:
+                self.ctrl_frame.text_message_init()
                 scroll_txt = "ファイルの読み込み中..."
                 self.ctrl_frame.text_message(scroll_txt)
 
